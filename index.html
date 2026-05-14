@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finger Math – Learn Math with Your Fingers!</title>
+  <meta name="description" content="Finger Math is a fun, camera-based math learning app for kids ages 4–8. Hold up your fingers to answer math questions!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6B35;
+      --teal:   #4ECDC4;
+      --purple: #9B59B6;
+      --bg:     #FFF9F5;
+      --dark:   #2D3436;
+      --grey:   #636E72;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--dark); }
+
+    /* ── Nav ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: white;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo span:first-child { font-size: 32px; }
+    .logo span:last-child { font-size: 22px; font-weight: 900; color: var(--orange); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { text-decoration: none; color: var(--grey); font-weight: 700; font-size: 15px; transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: white; padding: 10px 24px;
+      border-radius: 12px; font-weight: 900; text-decoration: none; font-size: 15px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,107,53,.4); }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 80px 48px;
+      max-width: 1100px; margin: 0 auto;
+      gap: 48px;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,107,53,.12); color: var(--orange);
+      padding: 6px 16px; border-radius: 999px;
+      font-weight: 800; font-size: 14px; letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero p {
+      font-size: 19px; color: var(--grey); line-height: 1.6;
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .download-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .dl-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 22px; border-radius: 14px;
+      text-decoration: none; font-weight: 800; font-size: 15px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .dl-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.15); }
+    .dl-apple { background: #000; color: white; }
+    .dl-google { background: white; color: var(--dark); border: 2px solid #e0e0e0; }
+    .dl-btn .dl-icon { font-size: 26px; }
+    .dl-btn .dl-text small { display: block; font-weight: 600; font-size: 11px; opacity: .7; }
+    .dl-btn .dl-text strong { font-size: 17px; }
+
+    /* Phone mockup */
+    .hero-visual { flex: 1; display: flex; justify-content: center; }
+    .phone {
+      width: 260px; height: 520px;
+      background: linear-gradient(135deg, var(--orange), #ff8c5a);
+      border-radius: 40px;
+      box-shadow: 0 32px 80px rgba(255,107,53,.35);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; animation: float 3s ease-in-out infinite;
+    }
+    .phone-inner {
+      width: 90%; height: 88%;
+      background: #1a1a2e;
+      border-radius: 28px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+    }
+    .phone-inner .emoji { font-size: 72px; }
+    .phone-inner .question {
+      font-size: 32px; font-weight: 900; color: var(--teal);
+      letter-spacing: 3px;
+    }
+    .phone-inner .bubbles { display: flex; gap: 12px; }
+    .bubble {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900; color: white;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 80px 48px; max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      text-align: center; color: var(--orange);
+      font-weight: 800; font-size: 14px; letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center; font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; margin-bottom: 48px;
+    }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .feature-card {
+      background: white; border-radius: 24px; padding: 32px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+    .feature-icon { font-size: 48px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+    .feature-card p { color: var(--grey); line-height: 1.6; font-size: 15px; }
+
+    /* ── How it works ── */
+    .how {
+      background: linear-gradient(135deg, var(--orange), #ff9560);
+      padding: 80px 48px; color: white;
+    }
+    .how .section-label { color: rgba(255,255,255,.7); }
+    .how .section-title { color: white; }
+    .steps { display: flex; gap: 32px; max-width: 900px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .step {
+      flex: 1; min-width: 200px; max-width: 260px;
+      background: rgba(255,255,255,.15); border-radius: 20px;
+      padding: 28px 20px; text-align: center; backdrop-filter: blur(8px);
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: white; color: var(--orange);
+      font-weight: 900; font-size: 22px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .step h3 { font-size: 18px; font-weight: 900; margin-bottom: 8px; }
+    .step p { font-size: 14px; opacity: .85; line-height: 1.6; }
+
+    /* ── Pricing / Download CTA ── */
+    .cta-section {
+      padding: 80px 48px; text-align: center;
+      max-width: 700px; margin: 0 auto;
+    }
+    .cta-section h2 { font-size: clamp(28px, 3vw, 42px); font-weight: 900; margin-bottom: 16px; }
+    .cta-section p { color: var(--grey); font-size: 18px; margin-bottom: 36px; }
+    .free-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--teal), #38b2ac);
+      color: white; padding: 6px 20px;
+      border-radius: 999px; font-weight: 900; font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.6);
+      padding: 40px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .footer-logo { color: white; font-weight: 900; font-size: 18px; }
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; font-size: 14px; }
+    footer a:hover { color: white; }
+    .footer-links { display: flex; gap: 24px; }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { flex-direction: column; padding: 48px 24px; text-align: center; }
+      .hero p { margin: 0 auto 32px; }
+      .download-row { justify-content: center; }
+      .features { padding: 48px 24px; }
+      .how { padding: 48px 24px; }
+      .cta-section { padding: 48px 24px; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a class="logo" href="#">
+    <span>🖐️</span>
+    <span>Finger Math</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  <a class="nav-cta" href="#download">Download Free</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">FOR KIDS AGES 4–8 ✨</div>
+    <h1>Learn Math with<br><span>Your Fingers!</span></h1>
+    <p>Hold up your fingers to the camera — Finger Math counts them and teaches addition, subtraction, multiplication and division in a fun, interactive way.</p>
+    <div class="download-row" id="download">
+      <a class="dl-btn dl-apple" href="#" onclick="alert('Coming soon to the App Store!')">
+        <span class="dl-icon">🍎</span>
+        <div class="dl-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      <a class="dl-btn dl-google" href="#" onclick="alert('Coming soon to Google Play!')">
+        <span class="dl-icon">▶</span>
+        <div class="dl-text">
+          <small>Get it on</small>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="emoji">🖐️</div>
+        <div class="question">3 + 4 = ?</div>
+        <div class="bubbles">
+          <div class="bubble" style="background:#FF6B35">5</div>
+          <div class="bubble" style="background:#4ECDC4">7</div>
+          <div class="bubble" style="background:#9B59B6">9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="section-label">FEATURES</div>
+  <h2 class="section-title">Everything your child needs to love math</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📷</div>
+      <h3>Camera Finger Detection</h3>
+      <p>Just hold up your fingers — the app reads them in real time using AI, no buttons needed!</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧮</div>
+      <h3>Calculator Mode</h3>
+      <p>Show two numbers with your fingers, pick + − × ÷, and see the result with a voice explanation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌟</div>
+      <h3>Quiz Mode</h3>
+      <p>The app shows a question — your child answers by holding up the right number of fingers.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔊</div>
+      <h3>Voice Read-Aloud</h3>
+      <p>Every number and result is spoken aloud, making it perfect for early readers and non-readers.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✖️</div>
+      <h3>All 4 Operations</h3>
+      <p>Addition, subtraction, multiplication and division — with visual explanations like 2×3 = 2+2+2.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Safe for Kids</h3>
+      <p>No ads, no in-app purchases, no data sharing. Camera is used only on-device — never stored or uploaded.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="how" id="how">
+  <div class="section-label">HOW IT WORKS</div>
+  <h2 class="section-title">Three easy steps</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Open the app</h3>
+      <p>Allow camera access once — the app remembers your permission forever.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Hold up fingers</h3>
+      <p>Show your fingers to the front camera. The AI counts them instantly.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Learn & celebrate</h3>
+      <p>The app speaks the result, shows how it was calculated, and celebrates with your child!</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="free-badge">100% FREE</div>
+  <h2>Ready to make math fun?</h2>
+  <p>Download Finger Math today and watch your child fall in love with numbers.</p>
+  <div class="download-row" style="justify-content:center">
+    <a class="dl-btn dl-apple" href="#" onclick="alert('Coming soon to the App Store!')">
+      <span class="dl-icon">🍎</span>
+      <div class="dl-text">
+        <small>Download on the</small>
+        <strong>App Store</strong>
+      </div>
+    </a>
+    <a class="dl-btn dl-google" href="#" onclick="alert('Coming soon to Google Play!')">
+      <span class="dl-icon">▶</span>
+      <div class="dl-text">
+        <small>Get it on</small>
+        <strong>Google Play</strong>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">🖐️ Finger Math</div>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:support@fingermath.app">Support</a>
+  </div>
+  <div style="font-size:13px">© 2025 Finger Math. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
